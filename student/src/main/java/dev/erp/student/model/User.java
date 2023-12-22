@@ -29,6 +29,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private EntityRole role;
 
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    private Student studentData;
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
