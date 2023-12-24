@@ -22,7 +22,7 @@ public class HodController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Hod> AddTeacher(@RequestBody Hod hod, @RequestParam String username){
+    public ResponseEntity<Hod> AddHod(@RequestBody Hod hod, @RequestParam String username){
         var u=userRepository.findByUsername(username);
         u.setHodTeacher(hod);
         userRepository.save(u);
@@ -31,7 +31,7 @@ public class HodController {
     }
 
     @GetMapping("/show")
-    public ResponseEntity<User> showTeacher(@RequestParam String username){
+    public ResponseEntity<User> showHod(@RequestParam String username){
 
         return ResponseEntity.ok(userRepository.findByUsername(username));
     }
