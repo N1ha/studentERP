@@ -32,6 +32,12 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     private Student studentData;
 
+    @OneToOne(mappedBy = "teacher",cascade = CascadeType.ALL)
+    private Teacher teacherData;
+
+    @OneToOne(mappedBy = "hod",cascade = CascadeType.ALL)
+    private Hod hodTeacher;
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;

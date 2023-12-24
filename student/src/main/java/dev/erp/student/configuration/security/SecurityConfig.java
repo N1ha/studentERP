@@ -34,6 +34,8 @@ public class SecurityConfig {
                 config -> config
                         .requestMatchers("/api/public/**", "/api/auth/**").permitAll()
                         .requestMatchers("/api/student/**").hasRole(Role.STUDENT.name())
+                        .requestMatchers("/api/teacher/**").hasRole(Role.PROF.name())
+                        .requestMatchers("/api/hod/**").hasRole(Role.HOD.name())
         );
         http.cors(config -> config.configurationSource(corsConfigurationSource));
         http.csrf(AbstractHttpConfigurer::disable);

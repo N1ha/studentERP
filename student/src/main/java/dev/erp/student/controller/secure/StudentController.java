@@ -13,7 +13,7 @@ import dev.erp.student.model.Student;
 import dev.erp.student.model.User;
 import dev.erp.student.repository.StudentRepository;
 import dev.erp.student.repository.UserRepository;
-import lombok.var;
+
 
 @RestController
 @RequestMapping("/api/student")
