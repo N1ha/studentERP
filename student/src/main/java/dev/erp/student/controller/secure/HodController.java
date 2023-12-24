@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/hod")
 public class HodController {
+    // TODO: separate the service layer
+    // TODO: use DTO to get only the required Information
     private final HodRepository hodRepository;
     private final UserRepository userRepository;
     @Autowired

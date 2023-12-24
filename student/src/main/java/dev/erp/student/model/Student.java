@@ -16,19 +16,21 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Student {
+    // TODO: Add attendance property
+    // TODO: Add scores property
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
     private long  rollno;
     private String course;
-    //adding attendence field is pending
+
     @OneToOne
     @JoinColumn(name="userID")
     private User student;
+
     public int getStudentId() {
         return studentId;
     }
-   
     public long getRollno() {
         return rollno;
     }
@@ -41,7 +43,6 @@ public class Student {
     public void setCourse(String course) {
         this.course = course;
     }
-   
     public void setStudent(User student) {
         this.student = student;
     }

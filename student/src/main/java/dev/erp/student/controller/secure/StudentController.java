@@ -19,7 +19,8 @@ import dev.erp.student.repository.UserRepository;
 @RequestMapping("/api/student")
 
 public class StudentController {
-    
+    // TODO: separate the service layer
+    // TODO: use DTO to get only the required Information
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
     @Autowired

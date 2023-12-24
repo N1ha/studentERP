@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Teacher {
+    // TODO: Map students and their info
+    // TODO: Add course curriculum info
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int teacherId;
@@ -25,25 +27,18 @@ public class Teacher {
     public int getTeacherId() {
         return teacherId;
     }
-
-
     public String getDepartment() {
         return department;
     }
-
     public void setDepartment(String department) {
         this.department = department;
     }
-
     public String getSubject() {
         return subject;
     }
-
     public void setSubject(String subject) {
         this.subject = subject;
     }
-
-
     public void setTeacher(User teacher) {
         this.teacher = teacher;
     }

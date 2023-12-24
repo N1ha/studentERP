@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Hod {
-
+    // TODO: Map teachers according to departments
+    // TODO: Add functionality for subject and year curriculum
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int hodId;
     private String department;
+
     @OneToOne
     @JoinColumn(name="userID")
     private User hod;
@@ -23,17 +25,12 @@ public class Hod {
     public int getHodId() {
         return hodId;
     }
-
-
-
     public String getDepartment() {
         return department;
     }
-
     public void setDepartment(String department) {
         this.department = department;
     }
-
     public void setHod(User hod) {
         this.hod = hod;
     }

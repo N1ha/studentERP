@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/teacher")
 public class TeacherController {
-
+    // TODO: separate the service layer
+    // TODO: use DTO to get only the required Information
     private final TeacherRepository teacherRepository;
     private final UserRepository userRepository;
     @Autowired
