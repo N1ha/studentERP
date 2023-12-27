@@ -6,6 +6,7 @@ import dev.erp.student.model.User;
 import dev.erp.student.repository.HodRepository;
 import dev.erp.student.repository.TeacherRepository;
 import dev.erp.student.repository.UserRepository;
+import dev.erp.student.service.HodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,26 +16,21 @@ import org.springframework.web.bind.annotation.*;
 public class HodController {
     // TODO: separate the service layer
     // TODO: use DTO to get only the required Information
-    private final HodRepository hodRepository;
-    private final UserRepository userRepository;
+    private final HodService hodService;
     @Autowired
-    public HodController(HodRepository hodRepository,UserRepository userRepository){
-        this.hodRepository = hodRepository;
-        this.userRepository=userRepository;
+    public HodController(HodService hodService){
+        this.hodService=hodService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<Hod> AddHod(@RequestBody Hod hod, @RequestParam String username){
-        var u=userRepository.findByUsername(username);
-        u.setHodTeacher(hod);
-        userRepository.save(u);
-        hod.setHod(u);
-        return ResponseEntity.ok(hodRepository.save(hod));
+
+        return ResponseEntity.ok(hodService.AddHod(hod,username));
     }
 
     @GetMapping("/show")
     public ResponseEntity<User> showHod(@RequestParam String username){
 
-        return ResponseEntity.ok(userRepository.findByUsername(username));
+        return ResponseEntity.ok(hodService.showHod(username));
     }
 }

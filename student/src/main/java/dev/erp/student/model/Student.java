@@ -1,14 +1,12 @@
 package dev.erp.student.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -24,9 +22,27 @@ public class Student {
     private long  rollno;
     private String course;
 
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Subject>sub = new ArrayList<>();
     @OneToOne
     @JoinColumn(name="userID")
     private User student;
+
+    @ManyToOne
+    @JoinColumn(name = "teacherId")
+    private Teacher assignedTeacher;
+
+    public void setAssignedTeacher(Teacher assignedTeacher) {
+        this.assignedTeacher = assignedTeacher;
+    }
+
+    public List<Subject> getSub() {
+        return sub;
+    }
+
+    public void setSub(List<Subject> sub) {
+        this.sub = sub;
+    }
 
     public int getStudentId() {
         return studentId;

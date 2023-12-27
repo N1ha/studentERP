@@ -1,7 +1,9 @@
 package dev.erp.student.controller.secure;
 
+import dev.erp.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.erp.student.model.Student;
 import dev.erp.student.model.User;
-import dev.erp.student.repository.StudentRepository;
-import dev.erp.student.repository.UserRepository;
+
 
 
 @RestController
@@ -21,27 +22,22 @@ import dev.erp.student.repository.UserRepository;
 public class StudentController {
     // TODO: separate the service layer
     // TODO: use DTO to get only the required Information
-    private final StudentRepository studentRepository;
-    private final UserRepository userRepository;
+
+
+    private final StudentService studentService;
     @Autowired
-    public StudentController(StudentRepository studentRepository,UserRepository userRepository){
-        this.studentRepository = studentRepository;
-        this.userRepository=userRepository;
+    public StudentController(StudentService studentService){
+        this.studentService=studentService;
     }
   
     @PostMapping("/add")
     public ResponseEntity<Student> AddStudent(@RequestBody Student student,@RequestParam String username){
-       var u=userRepository.findByUsername(username);
-       u.setStudentData(student);
-       userRepository.save(u);
-        student.setStudent(u);
-        return ResponseEntity.ok(studentRepository.save(student));
+        return ResponseEntity.ok(studentService.AddStudent(student,username));
     }
 
     @GetMapping("/show")
     public ResponseEntity<User> showstudent(@RequestParam String username){
-    
-        return ResponseEntity.ok(userRepository.findByUsername(username));
+        return ResponseEntity.ok(studentService.showstudent(username));
     }
     
 

@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +26,26 @@ public class Teacher {
     @OneToOne
     @JoinColumn(name="userID")
     private User teacher;
+
+    @OneToOne(mappedBy = "teacherSubject",cascade = CascadeType.ALL)
+    private Subject subjectDetails;
+
+    @OneToMany(mappedBy = "assignedTeacher",cascade = CascadeType.ALL)
+    private List<Student> TeacherStudent = new ArrayList<>();
+
+    public List<Student> getTeacherStudent() {
+        return TeacherStudent;
+    }
+
+    public void setTeacherStudent(List<Student> teacherStudent) {
+        TeacherStudent = teacherStudent;
+    }
+
+    public void setSubjectDetails(Subject subjectDetails) {
+        this.subjectDetails = subjectDetails;
+    }
+
+
 
     public int getTeacherId() {
         return teacherId;
